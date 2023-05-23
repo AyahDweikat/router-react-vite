@@ -8,6 +8,7 @@ import Root from './routes/root.jsx';
 import { action as rootAction, loader as rootLoader } from './routes/utils.js';
 import EditContact, { action as editAction} from './routes/Edit.jsx';
 import {action as destroyAction } from './routes/Destroy.jsx'
+import Index from './routes/Index';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     loader: rootLoader,
     action: rootAction,
     children: [
+      {index:true, element:<Index />},
       {
         path: "contacts/:contactId",
         element: <Contact />,
@@ -31,6 +33,7 @@ const router = createBrowserRouter([
       {
         path: "contacts/:contactId/destroy",
         action: destroyAction,
+        errorElement:<div>Oops! There was an error.</div>,
       },
     ]
   },
